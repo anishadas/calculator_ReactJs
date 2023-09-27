@@ -15,12 +15,12 @@ const Calculate = () => {
 
     const handleExpression = (value) => {
         //if continously two operators are selected, we replace the first with second
+        console.log(value,checkOperator)
         if (['+', '-', '/', '*', '%', '.'].includes(value) && checkOperator.isOperator) {
-           
+            alert("b")
             exp = input.slice(0, -1) + value;
-            setCheckOperator({isOperator:true,value})
         } else {
-            setCheckOperator({ isOperator: false, value:value })
+
             //for continous calculation on the previous result
             if (result !== null && ['+', '-', '/', '*', '%'].includes(value)) {
 
@@ -49,10 +49,11 @@ const Calculate = () => {
                 if (result && checkOperator.value===".") setResult(exp)
             }
 
-            //checking if two operators are together
-            // if (['+', '-', '/', '*', '%','.'].includes(value)) setCheckOperator({isOperator:true,value:value});
-           
         }
+        
+        if (['+', '-', '/', '*', '%', '.'].includes(value)) setCheckOperator({ isOperator: true, value })
+        else setCheckOperator({ isOperator: false, value })
+        
         setInput(exp);
         // console.log(value, checkOperator)
     }
